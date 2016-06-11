@@ -14,11 +14,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import pl.edu.zut.mad.hackathon2016.api.RequestListener;
 import pl.edu.zut.mad.hackathon2016.model.Orlik;
 import retrofit.RetrofitError;
@@ -36,11 +38,12 @@ public class OrliksListFragment extends Fragment implements RequestListener<List
     @Bind(R.id.recycler_view)
     RecyclerView mRecyclerView;
 
-    boolean mHasBallsRow = true;
-
-    private List<Orlik> mEntries = Collections.emptyList();
-    private int mMode;
     private Adapter adapter;
+    boolean mHasBallsRow = true;
+    private int mMode;
+
+    List<Orlik> mEntries = Collections.emptyList();
+    List<Orlik> allOrliks = Collections.emptyList();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -82,6 +85,8 @@ public class OrliksListFragment extends Fragment implements RequestListener<List
     @Override
     public void onSuccess(List<Orlik> response) {
         mEntries = response;
+        allOrliks = new ArrayList<>(mEntries);
+
         adapter.notifyDataSetChanged();
 
         for (Orlik orlik : response) {
@@ -94,53 +99,119 @@ public class OrliksListFragment extends Fragment implements RequestListener<List
 
     }
 
-    private class BaseViewHolder extends RecyclerView.ViewHolder {
-        View mPingPongIcon;
-        View mVolleyballIcon;
-        View mBasketballIcon;
-        View mFootballIcon;
+    class BaseViewHolder extends RecyclerView.ViewHolder {
+        @Bind(R.id.football_icon)
+        ImageView footballView;
+
+        @Bind(R.id.volleyball_icon)
+        ImageView volleyballView;
+
+        @Bind(R.id.basketball_icon)
+        ImageView basketballView;
+
+        @Bind(R.id.ping_pong_icon)
+        ImageView pingPong;
 
         BaseViewHolder(View itemView) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
 
-            mPingPongIcon = itemView.findViewById(R.id.ping_pong_icon);
-            mVolleyballIcon = itemView.findViewById(R.id.volleyball_icon);
-            mBasketballIcon = itemView.findViewById(R.id.basketball_icon);
-            mFootballIcon = itemView.findViewById(R.id.football_icon);
+        public void setDefaultColors() {
+            footballView.clearColorFilter();
+            volleyballView.clearColorFilter();
+            basketballView.clearColorFilter();
+            pingPong.clearColorFilter();
         }
     }
 
-    private class FilterRowViewHolder extends BaseViewHolder {
+    class FilterRowViewHolder extends BaseViewHolder {
+        final int color;
+
         FilterRowViewHolder(ViewGroup parent) {
             super(LayoutInflater.from(parent.getContext()).inflate(R.layout.orlik_list_filter, parent, false));
+            color = ContextCompat.getColor(getContext(), R.color.colorAccent);
+            footballView.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+        }
+
+        @OnClick(R.id.football_icon)
+        public void onClickFootball() {
+            setDefaultColors();
+            footballView.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+
+            mEntries.clear();
+            mEntries.addAll(allOrliks);
+
+            adapter.notifyDataSetChanged();
+        }
+
+        @OnClick(R.id.volleyball_icon)
+        public void onClickVolley() {
+            setDefaultColors();
+            volleyballView.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+
+            mEntries.clear();
+
+            for (Orlik orlik : allOrliks) {
+                if (orlik.getType() == 2)
+                    mEntries.add(orlik);
+            }
+            adapter.notifyDataSetChanged();
+        }
+
+        @OnClick(R.id.basketball_icon)
+        public void onClickBasket() {
+            setDefaultColors();
+            basketballView.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+
+            mEntries.clear();
+
+            for (Orlik orlik : allOrliks) {
+                if (orlik.getType() == 2)
+                    mEntries.add(orlik);
+            }
+            adapter.notifyDataSetChanged();
+            adapter.notifyDataSetChanged();
+        }
+
+        @OnClick(R.id.ping_pong_icon)
+        public void onClickPingPong() {
+            setDefaultColors();
+            pingPong.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+
+            mEntries.clear();
+
+            for (Orlik orlik : allOrliks) {
+                if (orlik.getType() == 3)
+                    mEntries.add(orlik);
+            }
+            adapter.notifyDataSetChanged();
         }
     }
 
-    private class OrlikRowViewHolder extends BaseViewHolder implements View.OnClickListener {
+    class OrlikRowViewHolder extends BaseViewHolder implements View.OnClickListener {
+        @Bind(R.id.orlik_name)
         TextView mNameTextView;
+
+        @Bind(R.id.favourite_icon)
         ImageView mFavoriteIcon;
+
+        @Bind(R.id.football_icon)
+        ImageView footballView;
+
+        @Bind(R.id.volleyball_icon)
+        ImageView volleyballView;
+
+        @Bind(R.id.basketball_icon)
+        ImageView basketballView;
+
+        @Bind(R.id.ping_pong_icon)
+        ImageView pingPong;
 
         OrlikRowViewHolder(ViewGroup parent) {
             super(LayoutInflater.from(parent.getContext()).inflate(R.layout.orlik_list_item, parent, false));
-            mNameTextView = (TextView) itemView.findViewById(R.id.orlik_name);
-            mFavoriteIcon = (ImageView) itemView.findViewById(R.id.favourite_icon);
+
             itemView.setOnClickListener(this);
-
-            final int color = ContextCompat.getColor(getContext(), R.color.colorAccent);
-            mFavoriteIcon.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Orlik orlik = mEntries.get(getAdapterPosition());
-                    orlik.setFavourite(true);
-                    orlik.save();
-
-                    mFavoriteIcon.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
-                }
-            });
-
-            if (mMode == MODE_FAVORITES) {
-                mFavoriteIcon.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
-            }
         }
 
         @Override
@@ -169,9 +240,54 @@ public class OrliksListFragment extends Fragment implements RequestListener<List
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
             if (holder instanceof OrlikRowViewHolder) {
-                Orlik orlik = mEntries.get(position - (mHasBallsRow ? 1 : 0));
-                OrlikRowViewHolder oHolder = (OrlikRowViewHolder) holder;
+                final Orlik orlik = mEntries.get(position - (mHasBallsRow ? 1 : 0));
+                final OrlikRowViewHolder oHolder = (OrlikRowViewHolder) holder;
                 oHolder.mNameTextView.setText(orlik.getAdres());
+
+                final int colorSport = ContextCompat.getColor(getContext(), R.color.colorAccent);
+                final int colorFavourite = ContextCompat.getColor(getContext(), R.color.colorPrimary);
+
+                oHolder.setDefaultColors();
+                oHolder.mFavoriteIcon.clearColorFilter();
+
+                if (orlik.getType() == 1) {
+                    oHolder.footballView.setColorFilter(colorSport, PorterDuff.Mode.SRC_ATOP);
+                }
+
+                if (orlik.getType() == 2) {
+                    oHolder.footballView.setColorFilter(colorSport, PorterDuff.Mode.SRC_ATOP);
+                    oHolder.volleyballView.setColorFilter(colorSport, PorterDuff.Mode.SRC_ATOP);
+                    oHolder.basketballView.setColorFilter(colorSport, PorterDuff.Mode.SRC_ATOP);
+                }
+
+                if (orlik.getType() == 3) {
+                    oHolder.footballView.setColorFilter(colorSport, PorterDuff.Mode.SRC_ATOP);
+                    oHolder.volleyballView.setColorFilter(colorSport, PorterDuff.Mode.SRC_ATOP);
+                    oHolder.basketballView.setColorFilter(colorSport, PorterDuff.Mode.SRC_ATOP);
+                    oHolder.pingPong.setColorFilter(colorSport, PorterDuff.Mode.SRC_ATOP);
+                }
+
+                if(orlik.isFavourite()){
+                    oHolder.mFavoriteIcon.setColorFilter(colorFavourite, PorterDuff.Mode.SRC_ATOP);
+                }
+
+                oHolder.mFavoriteIcon.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        orlik.setFavourite(!orlik.isFavourite());
+                        orlik.save();
+
+                        if (orlik.isFavourite()) {
+                            oHolder.mFavoriteIcon.setColorFilter(colorFavourite, PorterDuff.Mode.SRC_ATOP);
+                        } else {
+                            oHolder.mFavoriteIcon.clearColorFilter();
+                        }
+                    }
+                });
+
+                if (mMode == MODE_FAVORITES) {
+                    oHolder.mFavoriteIcon.setColorFilter(colorFavourite, PorterDuff.Mode.SRC_ATOP);
+                }
             }
         }
 
@@ -187,5 +303,6 @@ public class OrliksListFragment extends Fragment implements RequestListener<List
             }
             return (mHasBallsRow ? 1 : 0) + mEntries.size();
         }
+
     }
 }
