@@ -78,6 +78,14 @@ public class ReservationFragment extends Fragment
         }
         adapter = new ExpandableListAdapter(getContext(), days, hours);
         expandableList.setAdapter(adapter);
+        expandableList.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                ImageView reservedIcon = (ImageView) v.findViewById(R.id.reserved_icon);
+                reservedIcon.setVisibility(View.VISIBLE);
+                return true;
+            }
+        });
     }
 
     private String getDayOfWeek(int day) {
