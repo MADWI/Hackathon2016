@@ -14,6 +14,7 @@ public class Orlik extends BaseModel {
     private String adres;
     private String tel;
     private String email;
+    private int type;
 
     public String getId() {
         return id;
@@ -61,5 +62,13 @@ public class Orlik extends BaseModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 }

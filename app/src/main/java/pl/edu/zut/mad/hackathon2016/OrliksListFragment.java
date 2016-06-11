@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -42,6 +43,8 @@ public class OrliksListFragment extends Fragment {
     boolean mHasBallsRow = true;
 
     List<Orlik> mEntries = Collections.emptyList();
+    List<Orlik> allOrliks = Collections.emptyList();
+
     private int mMode;
     private Adapter adapter;
 
@@ -62,6 +65,7 @@ public class OrliksListFragment extends Fragment {
         RestClientManager.getAllOrliks(new RequestCallback<>(new RequestListener<List<Orlik>>() {
             @Override
             public void onSuccess(List<Orlik> response) {
+                allOrliks = response;
                 mEntries = response;
                 adapter.notifyDataSetChanged();
             }
@@ -98,32 +102,61 @@ public class OrliksListFragment extends Fragment {
         }
     }
 
-    class FilterRowViewHolder extends BaseViewHolder  {
+    class FilterRowViewHolder extends BaseViewHolder {
         final int color;
+
         FilterRowViewHolder(ViewGroup parent) {
             super(LayoutInflater.from(parent.getContext()).inflate(R.layout.orlik_list_filter, parent, false));
 
-           color  = ContextCompat.getColor(getContext(), R.color.colorAccent);
+            color = ContextCompat.getColor(getContext(), R.color.colorAccent);
         }
 
         @OnClick(R.id.football_icon)
-        public void onClickFootball(){
+        public void onClickFootball() {
             footballView.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
         }
 
         @OnClick(R.id.volleyball_icon)
-        public void onClickVolley(){
+        public void onClickVolley() {
             volleyballView.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+
+            mEntries.clear();
+
+            // if not clicked
+            for (Orlik orlik : allOrliks) {
+                if(orlik.getType() == 2)
+                    mEntries.add(orlik);
+            }
+            adapter.notifyDataSetChanged();
         }
 
         @OnClick(R.id.basketball_icon)
-        public void onClickBasket(){
+        public void onClickBasket() {
             basketballView.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+
+            mEntries.clear();
+
+            // if not clicked
+            for (Orlik orlik : allOrliks) {
+                if(orlik.getType() == 2)
+                    mEntries.add(orlik);
+            }
+            adapter.notifyDataSetChanged();
+            adapter.notifyDataSetChanged();
         }
 
         @OnClick(R.id.ping_pong_icon)
-        public void onClickPingPong(){
+        public void onClickPingPong() {
             pingPong.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+
+            mEntries.clear();
+
+            // if not clicked
+            for (Orlik orlik : allOrliks) {
+                if(orlik.getType() == 3)
+                    mEntries.add(orlik);
+            }
+            adapter.notifyDataSetChanged();
         }
     }
 
