@@ -155,4 +155,7 @@
         <item>Żuków, Gm. Przelewice</item>
     </string-array>
 
+
+    <string name="action_search">search</string>
+    <string name="search_hint">Wyszukaj...</string>
 </resources>
