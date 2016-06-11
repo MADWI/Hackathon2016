@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -46,27 +47,9 @@ public class AboutOrlikActivity extends AppCompatActivity implements OnMapReadyC
 
     @Override
     public void onMapReady(final GoogleMap googleMap) {
-        RestClientManager.getAllOrliks(new RequestCallback<>(new RequestListener<List<Orlik>>() {
-            @Override
-            public void onSuccess(List<Orlik> response) {
-                for (Orlik orlik : response) {
-                    int commaPosition = orlik.getAdres().indexOf(',');
-                    if (commaPosition != -1) {
-                        commaPosition = orlik.getAdres().length();
-                        String street = orlik.getAdres().substring(0, commaPosition);
-
-                        LatLng address = getLocationFromAddress(context, orlik.getMiasto() + ", " + street);
-                        if (address != null) {
-                            googleMap.addMarker(new MarkerOptions().position(address));
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(RetrofitError error) {
-            }
-        }));
+        LatLng defaultLocation = new LatLng(53.4544209, 14.531572);
+        googleMap.addMarker(new MarkerOptions().position(defaultLocation));
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(defaultLocation, 13));
     }
 
     public LatLng getLocationFromAddress(Context context, String strAddress) {
