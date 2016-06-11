@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view"
+    android:layout_gravity="center"
+    android:layout_width="match_parent"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    android:layout_height="wrap_content"
+    card_view:cardElevation="@dimen/orlik_list_card_elevation"
+    card_view:cardCornerRadius="@dimen/orlik_list_card_radius">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/orlik_item_default_margin"
+        android:paddingBottom="@dimen/orlik_item_default_margin"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/football_icon"
+            android:tint="@color/greyInactive"
+            android:layout_marginRight="@dimen/orlik_item_default_margin"
+            android:src="@drawable/ic_football" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/basketball_icon"
+            android:tint="@color/greyInactive"
+            android:layout_marginRight="@dimen/orlik_item_default_margin"
+            android:src="@drawable/ic_basketball" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/volleyball_icon"
+            android:tint="@color/greyInactive"
+            android:layout_marginRight="@dimen/orlik_item_default_margin"
+            android:src="@drawable/ic_volley_ball" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ping_pong_icon"
+            android:src="@drawable/ic_ping_pong"
+            android:tint="@color/greyInactive" />
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>
