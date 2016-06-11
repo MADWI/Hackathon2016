@@ -4,8 +4,10 @@ import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
+import java.io.Serializable;
+
 @Table(database = AppDatabase.class, allFields = true)
-public class Orlik extends BaseModel {
+public class Orlik extends BaseModel implements Serializable {
 
     @PrimaryKey
     private String id;
