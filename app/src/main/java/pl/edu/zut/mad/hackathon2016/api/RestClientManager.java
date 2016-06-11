@@ -22,4 +22,9 @@ public class RestClientManager {
         RestInterface restInterface = getRestApi();
         restInterface.getAllOrliks(callback);
     }
+
+    public static void sendReservation(String idOrlika, String reservedTime, String rezerwujacy, Callback callback) {
+        RestInterface restInterface = getRestApi();
+        restInterface.sendReservation(idOrlika, reservedTime, rezerwujacy, callback);
+    }
 }

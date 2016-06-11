@@ -20,6 +20,11 @@
     <string name="login_failed">Błąd logowania</string>
 
 
+
+
+
+
+
     <string-array name="provinces">
         <item>dolnośląskie</item>
         <item>kujawsko-pomorskie</item>
