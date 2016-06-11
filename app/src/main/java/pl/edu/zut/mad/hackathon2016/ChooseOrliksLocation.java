@@ -1,8 +1,10 @@
 package pl.edu.zut.mad.hackathon2016;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +50,12 @@ public class ChooseOrliksLocation extends Fragment implements AdapterView.OnItem
     public void onClick() {
         SaveManager saveManager = new SaveManager(getContext());
         saveManager.setLocalizationChoose(true);
-        Toast.makeText(getContext(), "Next fragment :)", Toast.LENGTH_SHORT).show();
+
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        Fragment oldChooseLocationFragment = fragmentManager.findFragmentByTag(ChooseOrliksLocation.TAG);
+        if (oldChooseLocationFragment != null) {
+            fragmentManager.beginTransaction().remove(oldChooseLocationFragment).commit();
+        }
     }
 
     @Override
