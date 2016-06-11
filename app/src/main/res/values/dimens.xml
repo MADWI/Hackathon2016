@@ -10,4 +10,6 @@
     <dimen name="orlik_list_card_elevation">5dp</dimen>
     <dimen name="orlik_list_card_radius">5dp</dimen>
     <dimen name="orlik_card_name_right_margin">65dp</dimen>
+
+    <dimen name="login_error_margin">10dp</dimen>
 </resources>
