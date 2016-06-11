@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
     private int mCurrentTab = -1;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void checkLocationChoose() {
         SaveManager saveManager = new SaveManager(this);
-        Fragment oldChooseLocationFragment = fragmentManager.findFragmentByTag(ChooseOrliksLocation.TAG);
 
         Fragment oldChooseLocationFragment = fragmentManager.findFragmentByTag(ChooseOrliksLocation.TAG);
         if (!saveManager.isLocalizationChoose()) {
