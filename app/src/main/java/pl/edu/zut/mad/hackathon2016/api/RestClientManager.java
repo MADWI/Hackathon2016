@@ -4,6 +4,7 @@ import java.util.List;
 
 import pl.edu.zut.mad.hackathon2016.model.Orlik;
 import pl.edu.zut.mad.hackathon2016.model.Reservation;
+import pl.edu.zut.mad.hackathon2016.model.Weather;
 import retrofit.Callback;
 
 public class RestClientManager {
@@ -25,7 +26,7 @@ public class RestClientManager {
         restInterface.getAllOrliks(callback);
     }
 
-    public static void getWeather(Callback<pl.edu.zut.mad.hackathon2016.model.List> callback){
+    public static void getWeather(Callback<Weather> callback){
         RestInterface restInterface = clientWeather.getService();
         restInterface.getWeather(callback);
     }
