@@ -130,6 +130,7 @@ public class OrliksListFragment extends Fragment implements RequestListener<List
         FilterRowViewHolder(ViewGroup parent) {
             super(LayoutInflater.from(parent.getContext()).inflate(R.layout.orlik_list_filter, parent, false));
             color = ContextCompat.getColor(getContext(), R.color.colorAccent);
+            footballView.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
         }
 
         @OnClick(R.id.football_icon)
