@@ -67,7 +67,7 @@ public class ReservationFragment extends Fragment
                 String day = getDayOfWeek(calendar.get(Calendar.DAY_OF_WEEK));
                 days.add(day);
                 List<Entry> entries = reservation.getEntries();
-                hours.put(reservation.getDay(), entries);
+                hours.put(day, entries);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
