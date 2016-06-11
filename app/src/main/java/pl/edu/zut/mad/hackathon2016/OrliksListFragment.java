@@ -1,10 +1,11 @@
 package pl.edu.zut.mad.hackathon2016;
 
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,13 +21,14 @@ import pl.edu.zut.mad.hackathon2016.api.RequestCallback;
 import pl.edu.zut.mad.hackathon2016.api.RequestListener;
 import pl.edu.zut.mad.hackathon2016.api.RestClientManager;
 import pl.edu.zut.mad.hackathon2016.model.Orlik;
+import retrofit.Callback;
 import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * Created by mb on 11.06.16.
  */
-public class OrliksListFragment extends Fragment {
-    //
+public class OrliksListFragment extends Fragment implements RequestListener<List<Orlik>> {
 
     public static final String ARG_MODE = "D_MODE";
     public static final int MODE_MY_RESERVATIONS = 1;
@@ -38,7 +40,7 @@ public class OrliksListFragment extends Fragment {
 
     boolean mHasBallsRow = true;
 
-    List<Orlik> mEntries = Collections.emptyList();
+    private List<Orlik> mEntries = Collections.emptyList();
     private int mMode;
     private Adapter adapter;
 
@@ -56,24 +58,42 @@ public class OrliksListFragment extends Fragment {
         ButterKnife.bind(this, view);
         adapter = new Adapter();
         mRecyclerView.setAdapter(adapter);
-        RestClientManager.getAllOrliks(new RequestCallback<>(new RequestListener<List<Orlik>>() {
-            @Override
-            public void onSuccess(List<Orlik> response) {
-                mEntries = response;
-                adapter.notifyDataSetChanged();
-            }
 
-            @Override
-            public void onFailure(RetrofitError error) {
+        if (mMode == MODE_FAVORITES) {
+            loadFavourites();
+        } else {
+            DataProvider.getOrliks(this);
+        }
 
-            }
-        }));
         return view;
     }
 
+    private void loadFavourites() {
+        mEntries = DataProvider.getFavouritesOrliks();
+        adapter.notifyDataSetChanged();
+    }
+
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void setMenuVisibility(boolean menuVisible) {
+        super.setMenuVisibility(menuVisible);
+        if (mMode == MODE_FAVORITES) {
+            loadFavourites();
+        }
+    }
+
+    @Override
+    public void onSuccess(List<Orlik> response) {
+        mEntries = response;
+        adapter.notifyDataSetChanged();
+
+        for (Orlik orlik : response) {
+            orlik.save();
+        }
+    }
+
+    @Override
+    public void onFailure(RetrofitError error) {
+
     }
 
     private class BaseViewHolder extends RecyclerView.ViewHolder {
@@ -107,13 +127,28 @@ public class OrliksListFragment extends Fragment {
             mNameTextView = (TextView) itemView.findViewById(R.id.orlik_name);
             mFavoriteIcon = (ImageView) itemView.findViewById(R.id.favourite_icon);
             itemView.setOnClickListener(this);
+
+            final int color = ContextCompat.getColor(getContext(), R.color.colorAccent);
+            mFavoriteIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Orlik orlik = mEntries.get(getAdapterPosition());
+                    orlik.setFavourite(true);
+                    orlik.save();
+
+                    mFavoriteIcon.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+                }
+            });
+
+            if (mMode == MODE_FAVORITES) {
+                mFavoriteIcon.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+            }
         }
 
         @Override
         public void onClick(View v) {
             TypeSelectorDialog typeSelectorDialog = new TypeSelectorDialog();
             typeSelectorDialog.show(getActivity().getFragmentManager(), "SelectorDialog");
-            Log.d("TAG", "AG");
         }
     }
 
@@ -150,6 +185,5 @@ public class OrliksListFragment extends Fragment {
             }
             return (mHasBallsRow ? 1 : 0) + mEntries.size();
         }
-
     }
 }
