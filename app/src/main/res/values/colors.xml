@@ -3,7 +3,8 @@
     <color name="colorPrimary">#F44336</color>
     <color name="colorPrimaryDark">#D32F2F</color>
     <color name="colorAccent">#FFC400</color>
-    <color name="textDefault">#616161</color>
+    <color name="textDefault">#424242</color>
+    <color name="textBackground">#757575</color>
     <color name="greyInactive">#757575</color>
     <color name="reservedColor">#2E7D32</color>
     <color name="white">#FFF</color>
