@@ -1,6 +1,7 @@
 package pl.edu.zut.mad.hackathon2016;
 
 import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
