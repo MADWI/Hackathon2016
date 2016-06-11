@@ -5,6 +5,7 @@
 
     <!--about orlik-->
     <dimen name="text_size_large">20sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
 
     <dimen name="orlik_item_default_margin">15dp</dimen>
     <dimen name="orlik_list_card_elevation">5dp</dimen>
@@ -12,4 +13,7 @@
     <dimen name="orlik_card_name_right_margin">65dp</dimen>
 
     <dimen name="login_error_margin">10dp</dimen>
+
+    <!--selector dialog-->
+    <dimen name="icon_size">60dp</dimen>
 </resources>
