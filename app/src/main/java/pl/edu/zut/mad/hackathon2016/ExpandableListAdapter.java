@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -85,9 +86,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             convertView = layoutInflater.inflate(R.layout.reservation_hour_item, parent, false);
         }
 
-        String hour = ((Entry) getChild(groupPosition, childPosition)).getTime();
+        Entry entry = (Entry) getChild(groupPosition, childPosition);
+        String hour = entry.getTime();
         TextView hourView = (TextView) convertView.findViewById(R.id.hour_of_day);
         hourView.setText(hour);
+        if (!entry.isReserved()) {
+            ImageView reservedIcon = (ImageView) convertView.findViewById(R.id.reserved_icon);
+            reservedIcon.setVisibility(View.INVISIBLE);
+        }
 
         return convertView;
     }
