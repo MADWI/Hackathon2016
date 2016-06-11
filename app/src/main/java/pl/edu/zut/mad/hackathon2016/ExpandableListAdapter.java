@@ -1,6 +1,7 @@
 package pl.edu.zut.mad.hackathon2016;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,7 +90,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         Entry entry = (Entry) getChild(groupPosition, childPosition);
         String hour = entry.getTime();
         TextView hourView = (TextView) convertView.findViewById(R.id.hour_of_day);
+        TextView weatherView = (TextView) convertView.findViewById(R.id.weather_icon);
         hourView.setText(hour);
+        weatherView.setTypeface(Typeface.createFromAsset(context.getAssets(), "weather.ttf"));
         if (!entry.isReserved()) {
             ImageView reservedIcon = (ImageView) convertView.findViewById(R.id.reserved_icon);
             reservedIcon.setVisibility(View.INVISIBLE);
