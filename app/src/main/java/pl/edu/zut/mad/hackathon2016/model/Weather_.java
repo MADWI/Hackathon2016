@@ -1,6 +1,10 @@
 
 package pl.edu.zut.mad.hackathon2016.model;
 
+import android.app.Activity;
+
+import pl.edu.zut.mad.hackathon2016.R;
+
 public class Weather_ {
 
     private Integer id;
@@ -37,6 +41,30 @@ public class Weather_ {
     }
 
     public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public void setWeatherIconFromId(int actualId, Activity activity){
+        int id = actualId / 100;
+        String icon = "";
+        if(actualId == 800){
+            icon = activity.getString(R.string.weather_sunny);
+        } else {
+            switch(id) {
+                case 2 : icon = activity.getString(R.string.weather_thunder);
+                    break;
+                case 3 : icon = activity.getString(R.string.weather_drizzle);
+                    break;
+                case 7 : icon = activity.getString(R.string.weather_foggy);
+                    break;
+                case 8 : icon = activity.getString(R.string.weather_cloudy);
+                    break;
+                case 6 : icon = activity.getString(R.string.weather_snowy);
+                    break;
+                case 5 : icon = activity.getString(R.string.weather_rainy);
+                    break;
+            }
+        }
         this.icon = icon;
     }
 }
