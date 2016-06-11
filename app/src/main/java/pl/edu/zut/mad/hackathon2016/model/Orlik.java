@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class Orlik extends BaseModel implements Serializable {
 
     @PrimaryKey
-    private String id;
+    private int id;
     private String wojewodztwo;
     private String miasto;
     private String adres;
@@ -19,11 +19,11 @@ public class Orlik extends BaseModel implements Serializable {
     private boolean isFavourite;
     private int type;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

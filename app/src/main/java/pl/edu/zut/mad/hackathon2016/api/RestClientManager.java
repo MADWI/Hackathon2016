@@ -16,9 +16,9 @@ public class RestClientManager {
         return client.getService();
     }
 
-    public static void getAllReservations(Callback<List<Reservation>> callback){
+    public static void getAllReservations(int id, Callback<List<Reservation>> callback){
         RestInterface restInterface = getRestApi();
-        restInterface.getAllReservations(callback);
+        restInterface.getAllReservations(id, callback);
     }
 
     public static void getAllOrliks(Callback<List<Orlik>> callback){
