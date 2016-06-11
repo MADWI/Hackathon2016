@@ -1,6 +1,7 @@
 package pl.edu.zut.mad.hackathon2016;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.Spinner;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import pl.edu.zut.mad.hackathon2016.activities.MainActivity;
 
 public class ChooseOrliksLocation extends Fragment implements AdapterView.OnItemSelectedListener {
 
@@ -44,6 +46,12 @@ public class ChooseOrliksLocation extends Fragment implements AdapterView.OnItem
         SaveManager saveManager = new SaveManager(getContext());
         saveManager.setLocalizationChoose(true);
 
+        /*new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                ((MainActivity) getActivity()).checkLocationChoose();
+            }
+        });*/
         getActivity().recreate();
     }
 
