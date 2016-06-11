@@ -41,5 +41,6 @@ public class TypeSelectorDialog extends android.support.v4.app.DialogFragment {
                 new Intent(getContext(), ReservationActivity.class)
                 .putExtra("orlik", orlik)
         );
+        dismiss();
     }
 }
