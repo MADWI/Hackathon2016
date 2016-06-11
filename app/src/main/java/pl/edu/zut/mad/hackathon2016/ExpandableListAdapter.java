@@ -10,13 +10,15 @@ import android.widget.TextView;
 import java.util.HashMap;
 import java.util.List;
 
+import pl.edu.zut.mad.hackathon2016.model.Entry;
+
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context context;
     private List<String> days;
-    private HashMap<String, List<String>> hours;
+    private HashMap<String, List<Entry>> hours;
 
-    public ExpandableListAdapter(Context context, List<String> days, HashMap<String, List<String>> hours) {
+    public ExpandableListAdapter(Context context, List<String> days, HashMap<String, List<Entry>> hours) {
         this.context = context;
         this.days = days;
         this.hours = hours;
@@ -82,7 +84,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             convertView = layoutInflater.inflate(R.layout.reservation_hour_item, null);
         }
 
-        String hour = (String) getChild(groupPosition, childPosition);
+        String hour = ((Entry) getChild(groupPosition, childPosition)).getTime();
         TextView hourView = (TextView) convertView.findViewById(R.id.hour_of_day);
         hourView.setText(hour);
 
