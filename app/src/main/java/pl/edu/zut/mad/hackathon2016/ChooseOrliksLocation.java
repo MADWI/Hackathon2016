@@ -40,22 +40,6 @@ public class ChooseOrliksLocation extends Fragment implements AdapterView.OnItem
     }
 
     private void initDropDownLists() {
-        List<String> provinces = new ArrayList<>();
-        provinces.add("śląskie");
-        provinces.add("wielkopolskie");
-
-        List<String> towns = new ArrayList<>();
-        towns.add("Warszawa");
-        towns.add("Szczecin");
-
-        ArrayAdapter<String> provincesAdapter =
-                new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, provinces);
-        ArrayAdapter<String> townsAdapter =
-                new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, towns);
-
-        chooseProvince.setAdapter(provincesAdapter);
-        chooseTownView.setAdapter(townsAdapter);
-
         chooseProvince.setOnItemSelectedListener(this);
         chooseTownView.setOnItemSelectedListener(this);
     }
