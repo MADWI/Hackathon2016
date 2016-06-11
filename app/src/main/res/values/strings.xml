@@ -5,4 +5,140 @@
     <string name="choose_town_title">Wybierz miasto</string>
     <string name="ok_button">Ok</string>
 
+
+    <string-array name="provinces">
+        <item>dolnośląskie</item>
+        <item>kujawsko-pomorskie</item>
+        <item>lubelskie</item>
+        <item>lubuskie</item>
+        <item>łódzkie</item>
+        <item>małopolskie</item>
+        <item>mazowieckie</item>
+        <item>opolskie</item>
+        <item>podkarpackie</item>
+        <item>podlaskie</item>
+        <item>pomorskie</item>
+        <item>śląskie</item>
+        <item>świętokrzyskie</item>
+        <item>warmińsko-mazurskie</item>
+        <item>zachodniopomorskie</item>
+    </string-array>
+
+    <string name="zachodniopomorskie_towns">
+        <item>wybierz miasto</item>
+        <item>Banie</item>
+        <item>Barlinek</item>
+        <item>Barwice</item>
+        <item>Będzino</item>
+        <item>Białogard</item>
+        <item>Biały Bór</item>
+        <item>Bobolice</item>
+        <item>Bonin</item>
+        <item>Borne Sulinowo</item>
+        <item>Brojce</item>
+        <item>Brzeżno</item>
+        <item>Budzistowo</item>
+        <item>Cedynia</item>
+        <item>Chlebówko</item>
+        <item>Chociwel</item>
+        <item>Chojna</item>
+        <item>Choszczno</item>
+        <item>Chrapowo, Gm. Pełczyce</item>
+        <item>Czaplinek</item>
+        <item>Darłowo</item>
+        <item>Dębice, Gm. Maszewo</item>
+        <item>Dębno</item>
+        <item>Dobra Szczecińska</item>
+        <item>Dobrowo, Gm. Tychowo</item>
+        <item>Dobrzany</item>
+        <item>Drawno</item>
+        <item>Drawsko Pomorskie</item>
+        <item>Dygowo</item>
+        <item>Dziwnów</item>
+        <item>Golczewo</item>
+        <item>Goleniów</item>
+        <item>Góralice, Gm. Trzcińsko - Zdrój</item>
+        <item>Gorawino</item>
+        <item>Gościno</item>
+        <item>Gostyń, Gm. Świerzno</item>
+        <item>Gryfice</item>
+        <item>Gryfino</item>
+        <item>Grzmiąca</item>
+        <item>Grzybowo, Gm. Kołobrzeg</item>
+        <item>Ińsko</item>
+        <item>Jarosławiec</item>
+        <item>Jarosławsko</item>
+        <item>Kalisz Pomorski</item>
+        <item>Kamień Pomorski</item>
+        <item>Karnice</item>
+        <item>Kobylanka</item>
+        <item>Kołbaskowo</item>
+        <item>Kołobrzeg</item>
+        <item>Koszalin</item>
+        <item>Krzęcin</item>
+        <item>Lipiany</item>
+        <item>Łobez</item>
+        <item>Marianowo</item>
+        <item>Międzyzdroje</item>
+        <item>Mielno</item>
+        <item>Mieszkowice</item>
+        <item>Mirosławiec</item>
+        <item>Moryń</item>
+        <item>Mostkowo</item>
+        <item>Myślibórz</item>
+        <item>Niekłończyca, Gm. Police</item>
+        <item>Nowe Warpno</item>
+        <item>Nowogard</item>
+        <item>Ostrowice</item>
+        <item>Pełczyce</item>
+        <item>Płoty</item>
+        <item>Podborsko</item>
+        <item>Polanów</item>
+        <item>Police</item>
+        <item>Połczyn-Zdrój</item>
+        <item>Postomino</item>
+        <item>Przęsocin, Gm. Police</item>
+        <item>Pyrzyce</item>
+        <item>Rąbino</item>
+        <item>Radowo Małe</item>
+        <item>Recz</item>
+        <item>Resko</item>
+        <item>Rosnowo gm.Manowo</item>
+        <item>Rymań</item>
+        <item>Rzeplino</item>
+        <item>Sianów</item>
+        <item>Siemyśl</item>
+        <item>Sławno</item>
+        <item>Sławoborze</item>
+        <item>Stara Dąbrowa</item>
+        <item>Stare Czarnowo</item>
+        <item>Stargard Szczeciński</item>
+        <item>Stepnica</item>
+        <item>Stuchowo, Gm. Świerzno</item>
+        <item>Suchań</item>
+        <item>Świdwin</item>
+        <item>Świeszyno</item>
+        <item>Świnoujście</item>
+        <item>Szczecin</item>
+        <item>Szczecinek</item>
+        <item>Tanowo, Gm. police</item>
+        <item>Trzcińsko-Zdrój</item>
+        <item>Trzebiatów</item>
+        <item>Trzęsacz</item>
+        <item>Tuczno</item>
+        <item>Tychowo</item>
+        <item>Ustronie Morskie</item>
+        <item>Wałcz</item>
+        <item>Węgorzyno</item>
+        <item>Widuchowa</item>
+        <item>Wierzchowo</item>
+        <item>Wierzchowo, Gm. Szczecinek</item>
+        <item>Witkowo I, Gm. Stargard Szczeciński</item>
+        <item>Wolin</item>
+        <item>Wrześnica, Gm. Sławno</item>
+        <item>Wrzosowo</item>
+        <item>Złocieniec</item>
+        <item>Żuków, Gm. Przelewice</item>
+    </string>
+
 </resources>
