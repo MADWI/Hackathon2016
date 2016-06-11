@@ -5,4 +5,7 @@
     <string name="choose_town_title">Wybierz miasto</string>
     <string name="ok_button">Ok</string>
 
+    <string name="connection_failed">Błąd połączenia</string>
+    <string name="login_failed">Błąd logowania</string>
+
 </resources>
