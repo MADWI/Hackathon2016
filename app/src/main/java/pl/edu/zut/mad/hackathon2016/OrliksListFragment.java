@@ -36,13 +36,12 @@ public class OrliksListFragment extends Fragment implements RequestListener<List
     @Bind(R.id.recycler_view)
     RecyclerView mRecyclerView;
 
+    private Adapter adapter;
     boolean mHasBallsRow = true;
+    private int mMode;
 
     List<Orlik> mEntries = Collections.emptyList();
     List<Orlik> allOrliks = Collections.emptyList();
-
-    private int mMode;
-    private Adapter adapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -115,6 +114,13 @@ public class OrliksListFragment extends Fragment implements RequestListener<List
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+
+        public void setDefaultColors() {
+            footballView.clearColorFilter();
+            volleyballView.clearColorFilter();
+            basketballView.clearColorFilter();
+            pingPong.clearColorFilter();
+        }
     }
 
     class FilterRowViewHolder extends BaseViewHolder {
@@ -123,13 +129,6 @@ public class OrliksListFragment extends Fragment implements RequestListener<List
         FilterRowViewHolder(ViewGroup parent) {
             super(LayoutInflater.from(parent.getContext()).inflate(R.layout.orlik_list_filter, parent, false));
             color = ContextCompat.getColor(getContext(), R.color.colorAccent);
-        }
-
-        public void setDefaultColors() {
-            footballView.clearColorFilter();
-            volleyballView.clearColorFilter();
-            basketballView.clearColorFilter();
-            pingPong.clearColorFilter();
         }
 
         @OnClick(R.id.football_icon)
@@ -150,7 +149,6 @@ public class OrliksListFragment extends Fragment implements RequestListener<List
 
             mEntries.clear();
 
-            // if not clicked
             for (Orlik orlik : allOrliks) {
                 if (orlik.getType() == 2)
                     mEntries.add(orlik);
@@ -209,25 +207,8 @@ public class OrliksListFragment extends Fragment implements RequestListener<List
 
         OrlikRowViewHolder(ViewGroup parent) {
             super(LayoutInflater.from(parent.getContext()).inflate(R.layout.orlik_list_item, parent, false));
-            final int colorFavourite = ContextCompat.getColor(getContext(), R.color.colorPrimary);
 
             itemView.setOnClickListener(this);
-
-            final int color = ContextCompat.getColor(getContext(), R.color.colorAccent);
-            mFavoriteIcon.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Orlik orlik = mEntries.get(getAdapterPosition());
-                    orlik.setFavourite(true);
-                    orlik.save();
-
-                    mFavoriteIcon.setColorFilter(colorFavourite, PorterDuff.Mode.SRC_ATOP);
-                }
-            });
-
-            if (mMode == MODE_FAVORITES) {
-                mFavoriteIcon.setColorFilter(colorFavourite, PorterDuff.Mode.SRC_ATOP);
-            }
         }
 
         @Override
@@ -256,11 +237,15 @@ public class OrliksListFragment extends Fragment implements RequestListener<List
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
             if (holder instanceof OrlikRowViewHolder) {
-                Orlik orlik = mEntries.get(position - (mHasBallsRow ? 1 : 0));
-                OrlikRowViewHolder oHolder = (OrlikRowViewHolder) holder;
+                final Orlik orlik = mEntries.get(position - (mHasBallsRow ? 1 : 0));
+                final OrlikRowViewHolder oHolder = (OrlikRowViewHolder) holder;
                 oHolder.mNameTextView.setText(orlik.getAdres());
 
                 final int colorSport = ContextCompat.getColor(getContext(), R.color.colorAccent);
+                final int colorFavourite = ContextCompat.getColor(getContext(), R.color.colorPrimary);
+
+                oHolder.setDefaultColors();
+                oHolder.mFavoriteIcon.clearColorFilter();
 
                 if (orlik.getType() == 1) {
                     oHolder.footballView.setColorFilter(colorSport, PorterDuff.Mode.SRC_ATOP);
@@ -277,6 +262,28 @@ public class OrliksListFragment extends Fragment implements RequestListener<List
                     oHolder.volleyballView.setColorFilter(colorSport, PorterDuff.Mode.SRC_ATOP);
                     oHolder.basketballView.setColorFilter(colorSport, PorterDuff.Mode.SRC_ATOP);
                     oHolder.pingPong.setColorFilter(colorSport, PorterDuff.Mode.SRC_ATOP);
+                }
+
+                if(orlik.isFavourite()){
+                    oHolder.mFavoriteIcon.setColorFilter(colorFavourite, PorterDuff.Mode.SRC_ATOP);
+                }
+
+                oHolder.mFavoriteIcon.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        orlik.setFavourite(!orlik.isFavourite());
+                        orlik.save();
+
+                        if (orlik.isFavourite()) {
+                            oHolder.mFavoriteIcon.setColorFilter(colorFavourite, PorterDuff.Mode.SRC_ATOP);
+                        } else {
+                            oHolder.mFavoriteIcon.clearColorFilter();
+                        }
+                    }
+                });
+
+                if (mMode == MODE_FAVORITES) {
+                    oHolder.mFavoriteIcon.setColorFilter(colorFavourite, PorterDuff.Mode.SRC_ATOP);
                 }
             }
         }
