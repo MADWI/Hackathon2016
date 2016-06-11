@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 
+import com.raizlabs.android.dbflow.sql.language.Condition;
+import com.raizlabs.android.dbflow.sql.language.Select;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,6 +24,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import pl.edu.zut.mad.hackathon2016.api.RequestListener;
 import pl.edu.zut.mad.hackathon2016.model.Entry;
+import pl.edu.zut.mad.hackathon2016.model.Entry_Table;
 import pl.edu.zut.mad.hackathon2016.model.Orlik;
 import pl.edu.zut.mad.hackathon2016.model.Reservation;
 import retrofit.RetrofitError;
@@ -84,14 +88,6 @@ public class ReservationFragment extends Fragment
     @Override
     public void onSuccess(List<Reservation> response) {
         reservations = response;
-        for (Reservation reservation : response) {
-            reservation.save();
-
-            for (Entry entry : reservation.getEntries()) {
-                entry.setReservationId(reservation.getId());
-                entry.save();
-            }
-        }
         initList();
     }
 
