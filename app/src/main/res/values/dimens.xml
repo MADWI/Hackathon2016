@@ -2,4 +2,12 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!--about orlik-->
+    <dimen name="text_size_large">20sp</dimen>
+
+    <dimen name="orlik_item_default_margin">15dp</dimen>
+    <dimen name="orlik_list_card_elevation">5dp</dimen>
+    <dimen name="orlik_list_card_radius">5dp</dimen>
+    <dimen name="orlik_card_name_right_margin">65dp</dimen>
 </resources>
