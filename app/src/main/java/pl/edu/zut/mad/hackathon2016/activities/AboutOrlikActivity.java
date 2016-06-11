@@ -1,4 +1,4 @@
-package pl.edu.zut.mad.hackathon2016;
+package pl.edu.zut.mad.hackathon2016.activities;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+
+import pl.edu.zut.mad.hackathon2016.R;
 
 
 public class AboutOrlikActivity extends AppCompatActivity implements OnMapReadyCallback {
