@@ -3,6 +3,8 @@ package pl.edu.zut.mad.hackathon2016;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.sql.language.Condition;
+import com.raizlabs.android.dbflow.sql.language.Select;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import java.util.ArrayList;
@@ -36,6 +38,13 @@ public class Reservation extends BaseModel {
     }
 
     public List<Entry> getEntries() {
+        if (entries.isEmpty()) {
+            entries = new Select()
+                    .from(Entry.class)
+                    .where(Condition.column(Entry_Table.reservationId.getNameAlias()).eq(id))
+                    .queryList();
+        }
+
         return entries;
     }
 

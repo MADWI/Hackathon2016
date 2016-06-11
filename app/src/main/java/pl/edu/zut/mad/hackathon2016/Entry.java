@@ -13,6 +13,7 @@ public class Entry extends BaseModel {
     private String time;
     private boolean isReserved;
     private String timeForRegisteringReservation;
+    private int reservationId;
 
     public int getId() {
         return id;
@@ -44,5 +45,13 @@ public class Entry extends BaseModel {
 
     public void setTimeForRegisteringReservation(String timeForRegisteringReservation) {
         this.timeForRegisteringReservation = timeForRegisteringReservation;
+    }
+
+    public int getReservationId() {
+        return reservationId;
+    }
+
+    public void setReservationId(int reservationId) {
+        this.reservationId = reservationId;
     }
 }
