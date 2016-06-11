@@ -19,12 +19,15 @@ import android.view.MenuInflater;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import pl.edu.zut.mad.hackathon2016.ChooseOrliksLocation;
+import pl.edu.zut.mad.hackathon2016.DataProvider;
 import pl.edu.zut.mad.hackathon2016.OrliksListFragment;
 import pl.edu.zut.mad.hackathon2016.R;
 import pl.edu.zut.mad.hackathon2016.SaveManager;
 import pl.edu.zut.mad.hackathon2016.SearchHelper;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String STATE_SELECTED_TAB = "S_TAB";
 
     private FragmentManager fragmentManager;
 
@@ -42,9 +45,16 @@ public class MainActivity extends AppCompatActivity {
 
     SearchHelper searchHelper;
 
+    private int mCurrentTab = -1;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (savedInstanceState != null) {
+            mCurrentTab = savedInstanceState.getInt(STATE_SELECTED_TAB, -1);
+        }
 
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
@@ -54,18 +64,20 @@ public class MainActivity extends AppCompatActivity {
         checkLocationChoose();
     }
 
-    private void checkLocationChoose() {
+    public void checkLocationChoose() {
         SaveManager saveManager = new SaveManager(this);
 
+        Fragment oldChooseLocationFragment = fragmentManager.findFragmentByTag(ChooseOrliksLocation.TAG);
         if (!saveManager.isLocalizationChoose()) {
-            ChooseOrliksLocation chooseOrliksLocation = new ChooseOrliksLocation();
-            fragmentManager.beginTransaction()
-                .add(R.id.main_activity_container, chooseOrliksLocation, ChooseOrliksLocation.TAG)
-                .commit();
+            if (oldChooseLocationFragment == null) {
+                ChooseOrliksLocation chooseOrliksLocation = new ChooseOrliksLocation();
+                fragmentManager.beginTransaction()
+                        .add(R.id.main_activity_container, chooseOrliksLocation, ChooseOrliksLocation.TAG)
+                        .commit();
+            }
 
             mTabsWrapper.setVisibility(View.GONE);
         } else {
-            Fragment oldChooseLocationFragment = fragmentManager.findFragmentByTag(ChooseOrliksLocation.TAG);
             if (oldChooseLocationFragment != null) {
                 fragmentManager.beginTransaction().remove(oldChooseLocationFragment).commit();
             }
@@ -73,6 +85,18 @@ public class MainActivity extends AppCompatActivity {
             mPager.setAdapter(new TabsAdapter(fragmentManager));
             mTabLayout.setupWithViewPager(mPager);
             mTabsWrapper.setVisibility(View.VISIBLE);
+            if (mCurrentTab < 0) {
+                mCurrentTab = DataProvider.getFavouritesOrliks().size() == 0 ? 2 : 1;
+            }
+            mPager.setCurrentItem(mCurrentTab, false);
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (mTabsWrapper.getVisibility() == View.VISIBLE) {
+            outState.putInt(STATE_SELECTED_TAB, mPager.getCurrentItem());
         }
     }
 
