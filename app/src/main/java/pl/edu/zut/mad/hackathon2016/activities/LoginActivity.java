@@ -1,4 +1,4 @@
-package pl.edu.zut.mad.hackathon2016;
+package pl.edu.zut.mad.hackathon2016.activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -18,6 +18,7 @@ import com.google.android.gms.common.api.OptionalPendingResult;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import pl.edu.zut.mad.hackathon2016.R;
 
 public class LoginActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener {
