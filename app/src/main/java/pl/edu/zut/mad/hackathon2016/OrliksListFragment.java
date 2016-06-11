@@ -214,7 +214,11 @@ public class OrliksListFragment extends Fragment implements RequestListener<List
 
         @Override
         public void onClick(View v) {
+            Orlik argument = mEntries.get(getAdapterPosition());
+            Bundle args = new Bundle();
+            args.putSerializable("orlik", argument);
             TypeSelectorDialog typeSelectorDialog = new TypeSelectorDialog();
+            typeSelectorDialog.setArguments(args);
             typeSelectorDialog.show(getActivity().getFragmentManager(), "SelectorDialog");
         }
     }
