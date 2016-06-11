@@ -56,19 +56,18 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkLocationChoose() {
         SaveManager saveManager = new SaveManager(this);
+        Fragment oldChooseLocationFragment = fragmentManager.findFragmentByTag(ChooseOrliksLocation.TAG);
 
         if (!saveManager.isLocalizationChoose()) {
-            ChooseOrliksLocation chooseOrliksLocation = new ChooseOrliksLocation();
-            fragmentManager.beginTransaction()
-                .add(R.id.main_activity_container, chooseOrliksLocation, ChooseOrliksLocation.TAG)
-                .commit();
+            if (oldChooseLocationFragment == null) {
+                ChooseOrliksLocation chooseOrliksLocation = new ChooseOrliksLocation();
+                fragmentManager.beginTransaction()
+                        .add(R.id.main_activity_container, chooseOrliksLocation, ChooseOrliksLocation.TAG)
+                        .commit();
+            }
 
             mTabsWrapper.setVisibility(View.GONE);
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.main_activity_container, chooseOrliksLocation, ChooseOrliksLocation.TAG)
-                    .commit();
         } else {
-            Fragment oldChooseLocationFragment = fragmentManager.findFragmentByTag(ChooseOrliksLocation.TAG);
             if (oldChooseLocationFragment != null) {
                 fragmentManager.beginTransaction().remove(oldChooseLocationFragment).commit();
             }

@@ -1,5 +1,6 @@
 package pl.edu.zut.mad.hackathon2016;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -40,22 +41,6 @@ public class ChooseOrliksLocation extends Fragment implements AdapterView.OnItem
     }
 
     private void initDropDownLists() {
-        List<String> provinces = new ArrayList<>();
-        provinces.add("śląskie");
-        provinces.add("wielkopolskie");
-
-        List<String> towns = new ArrayList<>();
-        towns.add("Warszawa");
-        towns.add("Szczecin");
-
-        ArrayAdapter<String> provincesAdapter =
-                new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, provinces);
-        ArrayAdapter<String> townsAdapter =
-                new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, towns);
-
-        chooseProvince.setAdapter(provincesAdapter);
-        chooseTownView.setAdapter(townsAdapter);
-
         chooseProvince.setOnItemSelectedListener(this);
         chooseTownView.setOnItemSelectedListener(this);
     }
@@ -64,7 +49,7 @@ public class ChooseOrliksLocation extends Fragment implements AdapterView.OnItem
     public void onClick() {
         SaveManager saveManager = new SaveManager(getContext());
         saveManager.setLocalizationChoose(true);
-        Toast.makeText(getContext(), "Next fragment :)", Toast.LENGTH_SHORT).show();
+        getActivity().recreate();
     }
 
     @Override
