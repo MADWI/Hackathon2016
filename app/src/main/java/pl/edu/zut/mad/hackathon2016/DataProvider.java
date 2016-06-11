@@ -15,6 +15,7 @@ import pl.edu.zut.mad.hackathon2016.api.RequestListener;
 import pl.edu.zut.mad.hackathon2016.api.RestClientManager;
 import pl.edu.zut.mad.hackathon2016.model.Orlik;
 import pl.edu.zut.mad.hackathon2016.model.Orlik_Table;
+import pl.edu.zut.mad.hackathon2016.model.Reservation;
 
 public class DataProvider {
 
@@ -40,5 +41,9 @@ public class DataProvider {
                 .from(Orlik.class)
                 .where(Condition.column(Orlik_Table.isFavourite.getNameAlias()).eq(true))
                 .queryList();
+    }
+
+    public static void getReservation(final int id, final RequestListener<List<Reservation>> listener) {
+        RestClientManager.getAllReservations(id, new RequestCallback<>(listener));
     }
 }

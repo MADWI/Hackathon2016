@@ -10,10 +10,11 @@ import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.POST;
+import retrofit.http.Query;
 
 public interface RestInterface {
     @GET("/getreservations.php")
-    void getAllReservations(Callback<List<Reservation>> cb);
+    void getAllReservations(@Query("id") int id, Callback<List<Reservation>> cb);
 
     @GET("/getorliks.php")
     void getAllOrliks(Callback<List<Orlik>> cb);
