@@ -4,13 +4,12 @@ import java.util.List;
 
 import pl.edu.zut.mad.hackathon2016.model.Orlik;
 import pl.edu.zut.mad.hackathon2016.model.Reservation;
+import pl.edu.zut.mad.hackathon2016.model.Weather;
 import retrofit.Callback;
-import retrofit.http.Body;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.POST;
-import retrofit.http.Path;
 
 public interface RestInterface {
     @GET("/getreservations.php")
