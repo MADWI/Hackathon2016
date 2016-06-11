@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Hackathon2016</string>
+
+    <string name="choose_province_title">Wybierz województwo</string>
+    <string name="choose_town_title">Wybierz miasto</string>
+    <string name="ok_button">Ok</string>
+
 </resources>
