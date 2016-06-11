@@ -1,7 +1,6 @@
 package pl.edu.zut.mad.hackathon2016;
 
 import android.content.Intent;
-import android.app.DialogFragment;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,7 +15,7 @@ import butterknife.OnClick;
 import pl.edu.zut.mad.hackathon2016.activities.ReservationActivity;
 import pl.edu.zut.mad.hackathon2016.model.Orlik;
 
-public class TypeSelectorDialog extends DialogFragment {
+public class TypeSelectorDialog extends android.support.v4.app.DialogFragment {
 
     private Orlik orlik = null;
 
