@@ -1,59 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="6dp"
+    >
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main_dialog"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="10dp">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/main_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="10dp">
 
-    <TextView
-        android:id="@+id/type"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="10dp"
-        android:background="@color/colorPrimary"
-        android:textColor="@color/white"
-        android:text="@string/select_type"
-        android:textSize="@dimen/text_size_medium" />
+        <TextView
+            android:id="@+id/type"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:translationZ="5dp"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
+            android:text="@string/select_type"
+            android:textSize="@dimen/text_size_medium" />
 
-    <ImageView
-        android:id="@+id/football"
-        android:layout_width="@dimen/icon_size"
-        android:layout_height="@dimen/icon_size"
-        android:layout_below="@id/type"
-        android:padding="10dp"
-        android:src="@drawable/ic_football" />
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:id="@+id/football"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@id/type"
+            android:padding="10dp"
+            android:src="@drawable/ic_football" />
 
-    <ImageView
-        android:id="@+id/basketball"
-        android:layout_width="@dimen/icon_size"
-        android:layout_height="@dimen/icon_size"
-        android:layout_below="@id/type"
-        android:layout_toEndOf="@id/football"
-        android:layout_toRightOf="@id/football"
-        android:padding="10dp"
-        android:src="@drawable/ic_basketball" />
+        <ImageView
+            android:id="@+id/basketball"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:padding="10dp"
+            android:src="@drawable/ic_basketball"
+            android:layout_alignTop="@+id/football"
+            android:layout_toRightOf="@+id/football"
+            android:layout_toEndOf="@+id/football" />
 
-    <ImageView
-        android:id="@+id/volleyball"
-        android:layout_width="@dimen/icon_size"
-        android:layout_height="@dimen/icon_size"
-        android:layout_below="@id/type"
-        android:layout_toEndOf="@id/basketball"
-        android:layout_toRightOf="@id/basketball"
-        android:padding="10dp"
-        android:src="@drawable/ic_volley_ball" />
+        <ImageView
+            android:id="@+id/volleyball"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:padding="10dp"
+            android:src="@drawable/ic_volley_ball"
+            android:layout_alignTop="@+id/basketball"
+            android:layout_toRightOf="@+id/basketball"
+            android:layout_toEndOf="@+id/basketball" />
 
-    <ImageView
-        android:id="@+id/ping_pong"
-        android:layout_width="@dimen/icon_size"
-        android:layout_height="@dimen/icon_size"
-        android:layout_below="@id/type"
-        android:layout_toEndOf="@id/volleyball"
-        android:layout_toRightOf="@id/volleyball"
-        android:padding="10dp"
-        android:src="@drawable/ic_ping_pong" />
+        <ImageView
+            android:id="@+id/ping_pong"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:layout_toEndOf="@id/volleyball"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@id/volleyball"
+            android:layout_alignBottom="@+id/volleyball"
+            android:padding="10dp"
+            android:src="@drawable/ic_ping_pong"
+            android:layout_alignTop="@+id/volleyball" />
 
-</RelativeLayout>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
