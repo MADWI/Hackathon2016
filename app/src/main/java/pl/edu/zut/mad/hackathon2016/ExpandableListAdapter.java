@@ -16,8 +16,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private List<String> days;
     private HashMap<String, List<String>> hours;
 
-    public ExpandableListAdapter(Context context) {
+    public ExpandableListAdapter(Context context, List<String> days, HashMap<String, List<String>> hours) {
         this.context = context;
+        this.days = days;
+        this.hours = hours;
     }
 
     @Override

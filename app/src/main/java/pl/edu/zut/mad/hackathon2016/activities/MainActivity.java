@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import pl.edu.zut.mad.hackathon2016.ChooseOrliksLocation;
 import pl.edu.zut.mad.hackathon2016.R;
+import pl.edu.zut.mad.hackathon2016.ReservationFragment;
 import pl.edu.zut.mad.hackathon2016.SaveManager;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,7 +26,10 @@ public class MainActivity extends AppCompatActivity {
                 .add(R.id.main_activity_container, chooseOrliksLocation, ChooseOrliksLocation.TAG)
                 .commit();
         } else {
-            // TODO: next fragment :)
+            ReservationFragment reservationFragment = new ReservationFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.main_activity_container, reservationFragment, ReservationFragment.TAG)
+                    .commit();
         }
     }
 }
