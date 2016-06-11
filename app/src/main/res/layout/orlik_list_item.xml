@@ -4,7 +4,7 @@
     android:id="@+id/card_view"
     android:layout_gravity="center"
     android:layout_width="match_parent"
-    android:layout_margin="@dimen/activity_horizontal_margin"
+    android:layout_margin="5dp"
     android:layout_height="wrap_content"
     card_view:cardElevation="@dimen/orlik_list_card_elevation"
     card_view:cardCornerRadius="@dimen/orlik_list_card_radius">
@@ -18,8 +18,10 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/textDefault"
+            android:textSize="18dp"
             android:text="Szczecin, ul. Wojciechowskiego 50, przy Gimnazjum nr 34"
             android:id="@+id/orlik_name"
+            android:minHeight="40dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -36,6 +38,8 @@
             android:layout_alignParentRight="true"
             android:layout_alignTop="@+id/orlik_name"
             android:layout_marginRight="@dimen/orlik_item_default_margin"
+            android:minHeight="40dp"
+            android:minWidth="40dp"
             android:src="@drawable/ic_favorite_black"
             android:tint="@color/greyInactive" />
 
