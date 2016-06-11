@@ -213,6 +213,7 @@ public class OrliksListFragment extends Fragment implements RequestListener<List
 
             itemView.setOnClickListener(this);
 
+            final int color = ContextCompat.getColor(getContext(), R.color.colorAccent);
             mFavoriteIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

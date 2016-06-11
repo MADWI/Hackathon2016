@@ -10,6 +10,7 @@
         <item name="windowNoTitle">true</item>
         <item name="android:dropDownItemStyle">@style/myDropDownItemStyle</item>
         <item name="android:dropDownListViewStyle">@style/myDropDownListViewStyle</item>
+        <item name="elevation">0dp</item>
     </style>
 
     <style name="myDropDownItemStyle" parent="Widget.AppCompat.DropDownItem.Spinner">
