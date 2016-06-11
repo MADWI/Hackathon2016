@@ -24,7 +24,7 @@
         <item>zachodniopomorskie</item>
     </string-array>
 
-    <string name="zachodniopomorskie_towns">
+    <string-array name="zachodniopomorskie_towns">
         <item>wybierz miasto</item>
         <item>Banie</item>
         <item>Barlinek</item>
@@ -139,6 +139,6 @@
         <item>Wrzosowo</item>
         <item>Złocieniec</item>
         <item>Żuków, Gm. Przelewice</item>
-    </string>
+    </string-array>
 
 </resources>
