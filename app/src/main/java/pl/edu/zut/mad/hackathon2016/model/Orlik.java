@@ -17,6 +17,7 @@ public class Orlik extends BaseModel implements Serializable {
     private String tel;
     private String email;
     private boolean isFavourite;
+    private int type;
 
     public String getId() {
         return id;
@@ -72,5 +73,13 @@ public class Orlik extends BaseModel implements Serializable {
 
     public void setFavourite(boolean favourite) {
         isFavourite = favourite;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 }

@@ -17,13 +17,9 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import pl.edu.zut.mad.hackathon2016.api.RequestCallback;
 import pl.edu.zut.mad.hackathon2016.api.RequestListener;
-import pl.edu.zut.mad.hackathon2016.api.RestClientManager;
 import pl.edu.zut.mad.hackathon2016.model.Orlik;
-import retrofit.Callback;
 import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 /**
  * Created by mb on 11.06.16.
