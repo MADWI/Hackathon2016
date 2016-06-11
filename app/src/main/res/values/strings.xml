@@ -156,4 +156,6 @@
     <string name="tab_favorites">Ulubione</string>
     <string name="tab_all">Wszystkie</string>
 
+    <string name="select_type">Wybierz boisko:</string>
+
 </resources>
