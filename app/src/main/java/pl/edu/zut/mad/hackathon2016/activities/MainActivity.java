@@ -26,6 +26,8 @@ import pl.edu.zut.mad.hackathon2016.SearchHelper;
 
 public class MainActivity extends AppCompatActivity {
 
+    private FragmentManager fragmentManager;
+
     @Bind(R.id.pager)
     ViewPager mPager;
 
@@ -34,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Bind(R.id.tabs_wrapper)
     View mTabsWrapper;
-
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -48,8 +49,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        ButterKnife.bind(this);
+        fragmentManager = getSupportFragmentManager();
         setSupportActionBar(toolbar);
         checkLocationChoose();
     }
