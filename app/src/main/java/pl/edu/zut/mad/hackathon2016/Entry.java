@@ -1,10 +1,26 @@
 package pl.edu.zut.mad.hackathon2016;
 
-public class Entry {
+import com.raizlabs.android.dbflow.annotation.PrimaryKey;
+import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.structure.BaseModel;
+
+@Table(database = AppDatabase.class, allFields = true)
+public class Entry extends BaseModel {
+
+    @PrimaryKey
+    private int id;
 
     private String time;
-    private Boolean isReserved;
+    private boolean isReserved;
     private String timeForRegisteringReservation;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getTime() {
         return time;
@@ -14,12 +30,12 @@ public class Entry {
         this.time = time;
     }
 
-    public Boolean getIsReserved() {
+    public boolean isReserved() {
         return isReserved;
     }
 
-    public void setIsReserved(Boolean isReserved) {
-        this.isReserved = isReserved;
+    public void setReserved(boolean reserved) {
+        isReserved = reserved;
     }
 
     public String getTimeForRegisteringReservation() {

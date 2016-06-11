@@ -1,12 +1,31 @@
 package pl.edu.zut.mad.hackathon2016;
 
+import com.raizlabs.android.dbflow.annotation.Column;
+import com.raizlabs.android.dbflow.annotation.PrimaryKey;
+import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.structure.BaseModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Reservation {
+@Table(database = AppDatabase.class)
+public class Reservation extends BaseModel {
 
+    @PrimaryKey
+    private int id;
+
+    @Column
     private String day;
+
     private List<Entry> entries = new ArrayList<>();
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getDay() {
         return day;
@@ -23,5 +42,4 @@ public class Reservation {
     public void setEntries(List<Entry> entries) {
         this.entries = entries;
     }
-
 }
