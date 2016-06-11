@@ -13,7 +13,12 @@ import android.view.Menu;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
+
+import pl.edu.zut.mad.hackathon2016.api.RequestListener;
+import pl.edu.zut.mad.hackathon2016.model.Orlik;
+import retrofit.RetrofitError;
 
 /**
  * Created by Łukasz on 2016-06-11.
@@ -70,14 +75,24 @@ public class SearchHelper implements SearchView.OnSuggestionListener, SearchView
         }
 
         private static class SuggestionsCursor extends AbstractCursor {
-            private ArrayList<String> mResults;
+            private ArrayList<String> mResults = new ArrayList<>();
 
             public SuggestionsCursor(CharSequence constraint) {
-                final int count = 100;
-                mResults = new ArrayList<>(count);
-                for (int i = 0; i < count; i++) {
-                    mResults.add("Result " + (i + 1));
-                }
+
+                DataProvider.getOrliks(new RequestListener<List<Orlik>>() {
+                    @Override
+                    public void onSuccess(List<Orlik> response) {
+                        for (Orlik orlik : response) {
+                            mResults.add(orlik.getAdres());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(RetrofitError error) {
+                        Log.e("getOrliks ERROR", error.getMessage());
+                    }
+                });
+
                 if (!TextUtils.isEmpty(constraint)) {
                     String constraintString = constraint.toString().toLowerCase(Locale.ROOT);
                     Iterator<String> iter = mResults.iterator();
