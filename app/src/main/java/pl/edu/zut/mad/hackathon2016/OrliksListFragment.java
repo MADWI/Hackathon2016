@@ -6,22 +6,24 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import pl.edu.zut.mad.hackathon2016.api.RequestCallback;
 import pl.edu.zut.mad.hackathon2016.api.RequestListener;
+import pl.edu.zut.mad.hackathon2016.api.RestClientManager;
 import pl.edu.zut.mad.hackathon2016.model.Orlik;
+import retrofit.Callback;
 import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * Created by mb on 11.06.16.
@@ -112,7 +114,7 @@ public class OrliksListFragment extends Fragment implements RequestListener<List
         }
     }
 
-    private class OrlikRowViewHolder extends BaseViewHolder {
+    private class OrlikRowViewHolder extends BaseViewHolder implements View.OnClickListener {
         TextView mNameTextView;
         ImageView mFavoriteIcon;
 
@@ -120,6 +122,7 @@ public class OrliksListFragment extends Fragment implements RequestListener<List
             super(LayoutInflater.from(parent.getContext()).inflate(R.layout.orlik_list_item, parent, false));
             mNameTextView = (TextView) itemView.findViewById(R.id.orlik_name);
             mFavoriteIcon = (ImageView) itemView.findViewById(R.id.favourite_icon);
+            itemView.setOnClickListener(this);
 
             final int color = ContextCompat.getColor(getContext(), R.color.colorAccent);
             mFavoriteIcon.setOnClickListener(new View.OnClickListener() {
@@ -136,6 +139,12 @@ public class OrliksListFragment extends Fragment implements RequestListener<List
             if (mMode == MODE_FAVORITES) {
                 mFavoriteIcon.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
             }
+        }
+
+        @Override
+        public void onClick(View v) {
+            TypeSelectorDialog typeSelectorDialog = new TypeSelectorDialog();
+            typeSelectorDialog.show(getActivity().getFragmentManager(), "SelectorDialog");
         }
     }
 

@@ -11,13 +11,22 @@ import android.view.View;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import pl.edu.zut.mad.hackathon2016.ChooseOrliksLocation;
 import pl.edu.zut.mad.hackathon2016.OrliksListFragment;
 import pl.edu.zut.mad.hackathon2016.R;
 import pl.edu.zut.mad.hackathon2016.SaveManager;
+import pl.edu.zut.mad.hackathon2016.SearchHelper;
 
 public class MainActivity extends AppCompatActivity {
+
+    private FragmentManager fragmentManager;
 
     @Bind(R.id.pager)
     ViewPager mPager;
@@ -28,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.tabs_wrapper)
     View mTabsWrapper;
 
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+
+    SearchHelper searchHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +49,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager = getSupportFragmentManager();
+        setSupportActionBar(toolbar);
+        checkLocationChoose();
+    }
+
+    private void checkLocationChoose() {
         SaveManager saveManager = new SaveManager(this);
 
         if (!saveManager.isLocalizationChoose()) {
@@ -46,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
 
             mTabsWrapper.setVisibility(View.GONE);
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.main_activity_container, chooseOrliksLocation, ChooseOrliksLocation.TAG)
+                    .commit();
         } else {
             Fragment oldChooseLocationFragment = fragmentManager.findFragmentByTag(ChooseOrliksLocation.TAG);
             if (oldChooseLocationFragment != null) {
@@ -56,6 +77,17 @@ public class MainActivity extends AppCompatActivity {
             mTabLayout.setupWithViewPager(mPager);
             mTabsWrapper.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+
+        searchHelper = new SearchHelper();
+        searchHelper.setSearchView(this, menu);
+
+        return true;
     }
 
     private class TabsAdapter extends FragmentPagerAdapter {
