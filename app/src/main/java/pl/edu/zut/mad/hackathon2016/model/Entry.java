@@ -14,6 +14,7 @@ public class Entry extends BaseModel {
     private boolean isReserved;
     private String timeForRegisteringReservation;
     private int reservationId;
+    private int type;
 
     public int getId() {
         return id;
@@ -53,5 +54,13 @@ public class Entry extends BaseModel {
 
     public void setReservationId(int reservationId) {
         this.reservationId = reservationId;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 }

@@ -14,6 +14,7 @@ public class Orlik extends BaseModel {
     private String adres;
     private String tel;
     private String email;
+    private boolean isFavourite;
     private int type;
 
     public String getId() {
@@ -62,6 +63,14 @@ public class Orlik extends BaseModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isFavourite() {
+        return isFavourite;
+    }
+
+    public void setFavourite(boolean favourite) {
+        isFavourite = favourite;
     }
 
     public int getType() {
