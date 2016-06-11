@@ -31,7 +31,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return hours.get(days.get(groupPosition)).size();
+        List<Entry> entries = hours.get(days.get(groupPosition));
+        return entries == null ? 0 : entries.size();
     }
 
     @Override
@@ -65,7 +66,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             LayoutInflater layoutInflater =
                     (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            convertView = layoutInflater.inflate(R.layout.reservation_day_item, null);
+            convertView = layoutInflater.inflate(R.layout.reservation_day_item, parent, false);
         }
 
         String day = (String) getGroup(groupPosition);
@@ -81,7 +82,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             LayoutInflater layoutInflater =
                     (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            convertView = layoutInflater.inflate(R.layout.reservation_hour_item, null);
+            convertView = layoutInflater.inflate(R.layout.reservation_hour_item, parent, false);
         }
 
         String hour = ((Entry) getChild(groupPosition, childPosition)).getTime();
