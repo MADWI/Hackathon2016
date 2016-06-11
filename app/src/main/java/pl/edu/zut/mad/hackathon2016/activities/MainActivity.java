@@ -26,10 +26,7 @@ public class MainActivity extends AppCompatActivity {
                 .add(R.id.main_activity_container, chooseOrliksLocation, ChooseOrliksLocation.TAG)
                 .commit();
         } else {
-            ReservationFragment reservationFragment = new ReservationFragment();
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.main_activity_container, reservationFragment, ReservationFragment.TAG)
-                    .commit();
+            
         }
     }
 }
