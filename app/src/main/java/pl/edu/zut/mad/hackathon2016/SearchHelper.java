@@ -75,7 +75,7 @@ public class SearchHelper implements SearchView.OnSuggestionListener, SearchView
         }
 
         private static class SuggestionsCursor extends AbstractCursor {
-            private ArrayList<String> mResults;
+            private ArrayList<String> mResults = new ArrayList<>();
 
             public SuggestionsCursor(CharSequence constraint) {
 
