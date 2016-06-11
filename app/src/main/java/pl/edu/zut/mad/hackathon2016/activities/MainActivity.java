@@ -2,11 +2,13 @@ package pl.edu.zut.mad.hackathon2016.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.widget.Toolbar;
+
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import pl.edu.zut.mad.hackathon2016.ChooseOrliksLocation;
 import pl.edu.zut.mad.hackathon2016.R;
 import pl.edu.zut.mad.hackathon2016.SaveManager;
@@ -23,7 +25,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        ButterKnife.bind(this);
+        setSupportActionBar(toolbar);
         checkLocationChoose();
     }
 
