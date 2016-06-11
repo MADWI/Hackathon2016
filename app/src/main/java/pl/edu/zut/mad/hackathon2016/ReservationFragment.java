@@ -34,7 +34,6 @@ public class ReservationFragment extends Fragment
     private List<Reservation> reservations = Collections.emptyList();
     private android.widget.ExpandableListAdapter adapter;
     private Orlik orlik;
-    private int type;
 
     @Bind(R.id.exp_list)
     ExpandableListView expandableList;
@@ -49,9 +48,8 @@ public class ReservationFragment extends Fragment
         Bundle args = getArguments();
         if (args != null) {
             orlik = (Orlik) args.getSerializable("orlik");
-            type = args.getInt("type");
         }
-        DataProvider.getReservation(this);
+        DataProvider.getReservation(orlik.getId(), this);
 
         return rootView;
     }
@@ -86,10 +84,15 @@ public class ReservationFragment extends Fragment
     @Override
     public void onSuccess(List<Reservation> response) {
         reservations = response;
-        initList();
         for (Reservation reservation : response) {
             reservation.save();
+
+            for (Entry entry : reservation.getEntries()) {
+                entry.setReservationId(reservation.getId());
+                entry.save();
+            }
         }
+        initList();
     }
 
     @Override
