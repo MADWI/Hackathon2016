@@ -1,6 +1,7 @@
 package pl.edu.zut.mad.hackathon2016;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,7 +88,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         String hour = ((Entry) getChild(groupPosition, childPosition)).getTime();
         TextView hourView = (TextView) convertView.findViewById(R.id.hour_of_day);
+        TextView weatherView = (TextView) convertView.findViewById(R.id.weather_icon);
         hourView.setText(hour);
+        weatherView.setTypeface(Typeface.createFromAsset(context.getAssets(), "weather.ttf"));
 
         return convertView;
     }
