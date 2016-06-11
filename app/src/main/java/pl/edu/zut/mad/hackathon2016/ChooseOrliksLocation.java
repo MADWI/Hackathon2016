@@ -2,6 +2,7 @@ package pl.edu.zut.mad.hackathon2016;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -19,6 +20,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import pl.edu.zut.mad.hackathon2016.activities.MainActivity;
 
 public class ChooseOrliksLocation extends Fragment implements AdapterView.OnItemSelectedListener {
 
@@ -51,11 +53,13 @@ public class ChooseOrliksLocation extends Fragment implements AdapterView.OnItem
         SaveManager saveManager = new SaveManager(getContext());
         saveManager.setLocalizationChoose(true);
 
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        Fragment oldChooseLocationFragment = fragmentManager.findFragmentByTag(ChooseOrliksLocation.TAG);
-        if (oldChooseLocationFragment != null) {
-            fragmentManager.beginTransaction().remove(oldChooseLocationFragment).commit();
-        }
+        /*new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                ((MainActivity) getActivity()).checkLocationChoose();
+            }
+        });*/
+        getActivity().recreate();
     }
 
     @Override
