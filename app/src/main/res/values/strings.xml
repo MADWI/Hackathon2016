@@ -20,6 +20,11 @@
     <string name="login_failed">Błąd logowania</string>
 
 
+
+
+
+
+
     <string-array name="provinces">
         <item>dolnośląskie</item>
         <item>kujawsko-pomorskie</item>
@@ -155,4 +160,13 @@
         <item>Żuków, Gm. Przelewice</item>
     </string-array>
 
+    <string name="tab_my_reservations">Moje rezerwacje</string>
+    <string name="tab_favorites">Ulubione</string>
+    <string name="tab_all">Wszystkie</string>
+
+    <string name="select_type">Wybierz boisko:</string>
+
+
+    <string name="action_search">search</string>
+    <string name="search_hint">Wyszukaj...</string>
 </resources>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_dialog"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/type"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="@string/select_type"
+        android:textSize="@dimen/text_size_medium"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/football"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:layout_below="@id/type"
+        android:padding="10dp"
+        android:src="@drawable/ic_football" />
+
+    <ImageView
+        android:id="@+id/basketball"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:layout_below="@id/type"
+        android:layout_toEndOf="@id/football"
+        android:layout_toRightOf="@id/football"
+        android:padding="10dp"
+        android:src="@drawable/ic_basketball" />
+
+    <ImageView
+        android:id="@+id/volleyball"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:layout_below="@id/type"
+        android:layout_toEndOf="@id/basketball"
+        android:layout_toRightOf="@id/basketball"
+        android:padding="10dp"
+        android:src="@drawable/ic_volley_ball" />
+
+    <ImageView
+        android:id="@+id/ping_pong"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:layout_below="@id/type"
+        android:layout_toEndOf="@id/volleyball"
+        android:layout_toRightOf="@id/volleyball"
+        android:padding="10dp"
+        android:src="@drawable/ic_ping_pong" />
+</RelativeLayout>
