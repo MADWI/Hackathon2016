@@ -13,4 +13,6 @@
     <dimen name="under_label_dimension">5dp</dimen>
     <dimen name="orlik_about_top_margin">20dp</dimen>
     <dimen name="left_about_orlik_margin">50dp</dimen>
+
+    <dimen name="login_error_margin">10dp</dimen>
 </resources>
