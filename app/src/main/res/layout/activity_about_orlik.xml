@@ -23,14 +23,177 @@
         android:layout_weight="1.0"
         android:orientation="vertical">
 
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:padding="10dp"
-            android:text="Example"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/text_size_large" />
+            android:background="@color/colorPrimary">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/orlik_item_default_margin"
+                android:paddingBottom="@dimen/orlik_item_default_margin"
+                android:paddingRight="@dimen/orlik_item_default_margin"
+                android:paddingEnd="@dimen/orlik_item_default_margin"
+                android:layout_marginLeft="@dimen/left_about_orlik_margin"
+                android:layout_marginStart="@dimen/left_about_orlik_margin"
+                android:textStyle="bold"
+                android:text="ul. Wojciechowskiego 50, przy Gimnazjum nr 34"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_size_large"
+                android:id="@+id/orlik_address" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/address_icon"
+                android:src="@drawable/ic_place"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="@dimen/orlik_item_default_margin"
+                android:layout_marginStart="@dimen/orlik_item_default_margin" />
+
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/opening_hours_label"
+                android:textColor="@color/textBackground"
+                android:id="@+id/opening_hours_label"
+                android:layout_marginTop="@dimen/orlik_item_default_margin"
+                android:layout_marginLeft="@dimen/left_about_orlik_margin"
+                android:layout_marginRight="@dimen/orlik_item_default_margin"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginTop="@dimen/under_label_dimension"
+                android:text="@string/opening_hours"
+                android:textColor="@color/textDefault"
+                android:id="@+id/opening_hour"
+                android:layout_marginRight="@dimen/orlik_item_default_margin"
+                android:layout_marginEnd="@dimen/orlik_item_default_margin"
+                android:layout_below="@+id/opening_hours_label"
+                android:layout_alignLeft="@+id/opening_hours_label"
+                android:layout_alignStart="@+id/opening_hours_label"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/animators_label"
+                android:textColor="@color/textBackground"
+                android:layout_marginTop="@dimen/orlik_about_top_margin"
+                android:id="@+id/animators_label"
+                android:layout_below="@+id/opening_hour"
+                android:layout_alignLeft="@+id/opening_hour"
+                android:layout_alignStart="@+id/opening_hour"
+                android:layout_alignRight="@+id/opening_hour"
+                android:layout_alignEnd="@+id/opening_hour" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Walt Disney"
+                android:layout_marginTop="@dimen/under_label_dimension"
+                android:id="@+id/first_animator_name"
+                android:textColor="@color/textDefault"
+                android:layout_below="@+id/animators_label"
+                android:layout_alignLeft="@+id/animators_label"
+                android:layout_alignStart="@+id/animators_label"
+                android:layout_alignRight="@+id/animators_label"
+                android:layout_alignEnd="@+id/animators_label" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Fred Flinstone"
+                android:textColor="@color/textDefault"
+                android:id="@+id/second_animator_name"
+                android:layout_below="@+id/first_animator_name"
+                android:layout_toRightOf="@+id/clock_icon"
+                android:layout_toEndOf="@+id/clock_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_marginTop="@dimen/orlik_about_top_margin"
+                android:text="Telefon:"
+                android:textColor="@color/textBackground"
+                android:id="@+id/tel_label"
+                android:layout_below="@+id/second_animator_name"
+                android:layout_alignLeft="@+id/second_animator_name"
+                android:layout_alignStart="@+id/second_animator_name"
+                android:layout_alignRight="@+id/first_animator_name"
+                android:layout_alignEnd="@+id/first_animator_name" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginTop="@dimen/under_label_dimension"
+                android:text="+48 123 123 123"
+                android:textColor="@color/textDefault"
+                android:id="@+id/phone_number"
+                android:layout_below="@+id/tel_label"
+                android:layout_alignLeft="@+id/tel_label"
+                android:layout_alignStart="@+id/tel_label"
+                android:layout_alignRight="@+id/tel_label"
+                android:layout_alignEnd="@+id/tel_label" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/clock_icon"
+                android:tint="@color/textDefault"
+                android:src="@drawable/ic_access_time_black"
+                android:layout_alignBottom="@+id/opening_hour"
+                android:layout_toLeftOf="@+id/opening_hour"
+                android:layout_toStartOf="@+id/opening_hour"
+                android:layout_marginRight="12dp"
+                android:layout_marginEnd="12dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/phone_icon"
+                android:tint="@color/textDefault"
+                android:src="@drawable/ic_phone_black"
+                android:layout_alignBottom="@+id/phone_number"
+                android:layout_alignLeft="@+id/animators_icon"
+                android:layout_alignStart="@+id/animators_icon" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/animators_icon"
+                android:tint="@color/textDefault"
+                android:src="@drawable/ic_person_black"
+                android:layout_alignTop="@+id/first_animator_name"
+                android:layout_alignLeft="@+id/clock_icon"
+                android:layout_alignStart="@+id/clock_icon"
+                android:layout_alignBottom="@+id/second_animator_name" />
+
+        </RelativeLayout>
 
     </LinearLayout>
 

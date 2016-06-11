@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Hackathon2016</string>
+    <string name="app_name">Czy pokopie</string>
 
     <string name="choose_province_title">Wybierz województwo</string>
     <string name="choose_town_title">Wybierz miasto</string>
@@ -13,4 +13,7 @@
     <string name="weather_snowy">&#xf01b;</string>
     <string name="weather_thunder">&#xf01e;</string>
     <string name="weather_drizzle">&#xf01c;</string>
+    <string name="opening_hours_label">Godziny otwarcia:</string>
+    <string name="opening_hours">8:00 &#8211; 21:30</string>
+    <string name="animators_label">Animatorzy:</string>
 </resources>
