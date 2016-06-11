@@ -271,10 +271,14 @@ public class OrliksListFragment extends Fragment implements RequestListener<List
                 oHolder.mFavoriteIcon.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        orlik.setFavourite(true);
+                        orlik.setFavourite(!orlik.isFavourite());
                         orlik.save();
 
-                        oHolder.mFavoriteIcon.setColorFilter(colorFavourite, PorterDuff.Mode.SRC_ATOP);
+                        if (orlik.isFavourite()) {
+                            oHolder.mFavoriteIcon.setColorFilter(colorFavourite, PorterDuff.Mode.SRC_ATOP);
+                        } else {
+                            oHolder.mFavoriteIcon.clearColorFilter();
+                        }
                     }
                 });
 
