@@ -2,7 +2,6 @@ package pl.edu.zut.mad.hackathon2016;
 
 
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.raizlabs.android.dbflow.sql.language.Condition;
 import com.raizlabs.android.dbflow.sql.language.CursorResult;
@@ -45,18 +44,6 @@ public class DataProvider {
     }
 
     public static void getReservation(final int id, final RequestListener<List<Reservation>> listener) {
-        new Select()
-                .from(Reservation.class)
-                .async()
-                .queryListResultCallback(new QueryTransaction.QueryResultListCallback<Reservation>() {
-                    @Override
-                    public void onListQueryResult(QueryTransaction transaction, @Nullable List<Reservation> tResult) {
-                        if (tResult == null || tResult.isEmpty()) {
-                            RestClientManager.getAllReservations(id, new RequestCallback<>(listener));
-                        } else {
-                            listener.onSuccess(tResult);
-                        }
-                    }
-                }).execute();
+        RestClientManager.getAllReservations(id, new RequestCallback<>(listener));
     }
 }
