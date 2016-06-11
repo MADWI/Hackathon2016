@@ -26,7 +26,7 @@ public class RestClientManager {
         restInterface.getAllOrliks(callback);
     }
 
-    public static void sendReservation(String idOrlika, String reservedTime, String rezerwujacy, Callback callback) {
+    public static void sendReservation(int idOrlika, String reservedTime, String rezerwujacy, Callback<Object> callback) {
         RestInterface restInterface = getRestApi();
         restInterface.sendReservation(idOrlika, reservedTime, rezerwujacy, callback);
     }
