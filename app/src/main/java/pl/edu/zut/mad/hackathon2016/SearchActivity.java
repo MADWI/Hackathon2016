@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.AbstractCursor;
 import android.database.Cursor;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +20,11 @@ import java.util.Iterator;
 import java.util.Locale;
 
 public class SearchActivity extends AppCompatActivity {
+
+    public static Intent createIntent(Context context)
+    {
+        return new Intent(context, SearchActivity.class);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
