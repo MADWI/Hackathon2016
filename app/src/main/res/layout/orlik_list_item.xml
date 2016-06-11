@@ -37,7 +37,7 @@
             android:layout_alignTop="@+id/orlik_name"
             android:layout_marginRight="@dimen/orlik_item_default_margin"
             android:src="@drawable/ic_favorite_black"
-            android:tint="@color/grey_inactive" />
+            android:tint="@color/greyInactive" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -46,7 +46,7 @@
             android:layout_marginTop="@dimen/orlik_item_default_margin"
             android:layout_marginBottom="@dimen/orlik_item_default_margin"
             android:src="@drawable/ic_ping_pong"
-            android:tint="@color/grey_inactive"
+            android:tint="@color/greyInactive"
             android:layout_below="@+id/favourite_icon"
             android:layout_alignLeft="@+id/favourite_icon"
             android:layout_alignStart="@+id/favourite_icon" />
@@ -55,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/volleyball_icon"
-            android:tint="@color/grey_inactive"
+            android:tint="@color/greyInactive"
             android:layout_marginRight="@dimen/orlik_item_default_margin"
             android:src="@drawable/ic_volley_ball"
             android:layout_alignTop="@+id/ping_pong_icon"
@@ -66,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/basketball_icon"
-            android:tint="@color/grey_inactive"
+            android:tint="@color/greyInactive"
             android:layout_marginRight="@dimen/orlik_item_default_margin"
             android:src="@drawable/ic_basketball"
             android:layout_alignTop="@+id/volleyball_icon"
@@ -77,7 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/football_icon"
-            android:tint="@color/grey_inactive"
+            android:tint="@color/greyInactive"
             android:layout_marginRight="@dimen/orlik_item_default_margin"
             android:layout_alignBottom="@+id/basketball_icon"
             android:layout_toLeftOf="@+id/basketball_icon"
