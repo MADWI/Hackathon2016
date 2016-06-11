@@ -1,8 +1,10 @@
 package pl.edu.zut.mad.hackathon2016;
 
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +18,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import pl.edu.zut.mad.hackathon2016.api.RequestCallback;
 import pl.edu.zut.mad.hackathon2016.api.RequestListener;
 import pl.edu.zut.mad.hackathon2016.api.RestClientManager;
@@ -26,7 +29,7 @@ import retrofit.RetrofitError;
  * Created by mb on 11.06.16.
  */
 public class OrliksListFragment extends Fragment {
-    //
+
 
     public static final String ARG_MODE = "D_MODE";
     public static final int MODE_MY_RESERVATIONS = 1;
@@ -76,25 +79,51 @@ public class OrliksListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
-    private class BaseViewHolder extends RecyclerView.ViewHolder {
-        View mPingPongIcon;
-        View mVolleyballIcon;
-        View mBasketballIcon;
-        View mFootballIcon;
+    class BaseViewHolder extends RecyclerView.ViewHolder {
+        @Bind(R.id.football_icon)
+        ImageView footballView;
+
+        @Bind(R.id.volleyball_icon)
+        ImageView volleyballView;
+
+        @Bind(R.id.basketball_icon)
+        ImageView basketballView;
+
+        @Bind(R.id.ping_pong_icon)
+        ImageView pingPong;
 
         BaseViewHolder(View itemView) {
             super(itemView);
-
-            mPingPongIcon = itemView.findViewById(R.id.ping_pong_icon);
-            mVolleyballIcon = itemView.findViewById(R.id.volleyball_icon);
-            mBasketballIcon = itemView.findViewById(R.id.basketball_icon);
-            mFootballIcon = itemView.findViewById(R.id.football_icon);
+            ButterKnife.bind(this, itemView);
         }
     }
 
-    private class FilterRowViewHolder extends BaseViewHolder {
+    class FilterRowViewHolder extends BaseViewHolder  {
+        final int color;
         FilterRowViewHolder(ViewGroup parent) {
             super(LayoutInflater.from(parent.getContext()).inflate(R.layout.orlik_list_filter, parent, false));
+
+           color  = ContextCompat.getColor(getContext(), R.color.colorAccent);
+        }
+
+        @OnClick(R.id.football_icon)
+        public void onClickFootball(){
+            footballView.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+        }
+
+        @OnClick(R.id.volleyball_icon)
+        public void onClickVolley(){
+            volleyballView.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+        }
+
+        @OnClick(R.id.basketball_icon)
+        public void onClickBasket(){
+            basketballView.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+        }
+
+        @OnClick(R.id.ping_pong_icon)
+        public void onClickPingPong(){
+            pingPong.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
         }
     }
 
