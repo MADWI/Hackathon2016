@@ -25,7 +25,8 @@ public class DataProvider {
                 .queryResultCallback(new QueryTransaction.QueryResultCallback<Orlik>() {
                     @Override
                     public void onQueryResult(QueryTransaction transaction, @NonNull CursorResult<Orlik> tResult) {
-                        if (tResult.toList() == null) {
+                        List<Orlik> orliks = tResult.toList();
+                        if (orliks == null || orliks.isEmpty()) {
                             RestClientManager.getAllOrliks(new RequestCallback<>(listener));
                         } else {
                             listener.onSuccess(tResult.toList());

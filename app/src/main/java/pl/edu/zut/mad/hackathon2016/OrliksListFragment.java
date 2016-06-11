@@ -40,7 +40,7 @@ public class OrliksListFragment extends Fragment implements RequestListener<List
 
     boolean mHasBallsRow = true;
 
-    List<Orlik> mEntries = Collections.emptyList();
+    private List<Orlik> mEntries = Collections.emptyList();
     private int mMode;
     private Adapter adapter;
 
@@ -85,6 +85,10 @@ public class OrliksListFragment extends Fragment implements RequestListener<List
     public void onSuccess(List<Orlik> response) {
         mEntries = response;
         adapter.notifyDataSetChanged();
+
+        for (Orlik orlik : response) {
+            orlik.save();
+        }
     }
 
     @Override
