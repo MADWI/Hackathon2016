@@ -4,8 +4,10 @@ import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
+import java.io.Serializable;
+
 @Table(database = AppDatabase.class, allFields = true)
-public class Orlik extends BaseModel {
+public class Orlik extends BaseModel implements Serializable {
 
     @PrimaryKey
     private String id;
@@ -15,6 +17,7 @@ public class Orlik extends BaseModel {
     private String tel;
     private String email;
     private boolean isFavourite;
+    private int type;
 
     public String getId() {
         return id;
@@ -70,5 +73,13 @@ public class Orlik extends BaseModel {
 
     public void setFavourite(boolean favourite) {
         isFavourite = favourite;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 }

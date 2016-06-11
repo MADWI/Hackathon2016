@@ -17,13 +17,9 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import pl.edu.zut.mad.hackathon2016.api.RequestCallback;
 import pl.edu.zut.mad.hackathon2016.api.RequestListener;
-import pl.edu.zut.mad.hackathon2016.api.RestClientManager;
 import pl.edu.zut.mad.hackathon2016.model.Orlik;
-import retrofit.Callback;
 import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 /**
  * Created by mb on 11.06.16.
@@ -147,7 +143,11 @@ public class OrliksListFragment extends Fragment implements RequestListener<List
 
         @Override
         public void onClick(View v) {
+            Orlik argument = mEntries.get(getAdapterPosition());
+            Bundle args = new Bundle();
+            args.putSerializable("orlik", argument);
             TypeSelectorDialog typeSelectorDialog = new TypeSelectorDialog();
+            typeSelectorDialog.setArguments(args);
             typeSelectorDialog.show(getActivity().getFragmentManager(), "SelectorDialog");
         }
     }
