@@ -8,6 +8,8 @@
         android:id="@+id/choose_province"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="40dp"
+        android:layout_margin="@dimen/orlik_item_default_margin"
         android:spinnerMode="dialog"
         android:prompt="@string/choose_province_title"
         android:entries="@array/provinces" />
@@ -16,6 +18,10 @@
         android:id="@+id/choose_town"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="40dp"
+        android:layout_marginLeft="@dimen/orlik_item_default_margin"
+        android:layout_marginRight="@dimen/orlik_item_default_margin"
+        android:layout_marginBottom="@dimen/orlik_item_default_margin"
         android:prompt="@string/choose_town_title"
         android:spinnerMode="dialog"
         android:entries="@array/zachodniopomorskie_towns" />
@@ -24,6 +30,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/ok_button"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"
         android:id="@+id/ok_button"
         android:layout_gravity="center_horizontal" />
 
