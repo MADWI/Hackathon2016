@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.widget.Toolbar;
 
+import butterknife.Bind;
 import pl.edu.zut.mad.hackathon2016.ChooseOrliksLocation;
 import pl.edu.zut.mad.hackathon2016.R;
 import pl.edu.zut.mad.hackathon2016.SaveManager;
@@ -30,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         if (!saveManager.isLocalizationChoose()) {
             ChooseOrliksLocation chooseOrliksLocation = new ChooseOrliksLocation();
             getSupportFragmentManager().beginTransaction()
-                .add(R.id.main_activity_container, chooseOrliksLocation, ChooseOrliksLocation.TAG)
-                .commit();
+                    .add(R.id.main_activity_container, chooseOrliksLocation, ChooseOrliksLocation.TAG)
+                    .commit();
         } else {
             // TODO: next fragment :)
         }
