@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/weather_rainy"
+        android:text="@string/weather_sunny"
         android:layout_marginRight="@dimen/orlik_item_default_margin"
         android:id="@+id/weather_icon"
         android:layout_alignBottom="@+id/reserved_icon"
