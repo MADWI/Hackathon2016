@@ -3,6 +3,6 @@
 
     <string name="choose_province_title">Wybierz województwo</string>
     <string name="choose_town_title">Wybierz miasto</string>
-    <string name="choose_orlik_title">Wybierz orlika</string>
+    <string name="ok_button">Ok</string>
 
 </resources>
