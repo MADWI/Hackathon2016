@@ -64,9 +64,6 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
 
             mTabsWrapper.setVisibility(View.GONE);
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.main_activity_container, chooseOrliksLocation, ChooseOrliksLocation.TAG)
-                    .commit();
         } else {
             Fragment oldChooseLocationFragment = fragmentManager.findFragmentByTag(ChooseOrliksLocation.TAG);
             if (oldChooseLocationFragment != null) {
