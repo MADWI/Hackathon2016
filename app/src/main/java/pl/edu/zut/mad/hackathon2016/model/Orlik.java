@@ -1,4 +1,4 @@
-package pl.edu.zut.mad.hackathon2016;
+package pl.edu.zut.mad.hackathon2016.model;
 
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
