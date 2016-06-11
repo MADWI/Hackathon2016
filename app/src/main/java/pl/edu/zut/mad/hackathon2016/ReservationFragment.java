@@ -7,12 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import pl.edu.zut.mad.hackathon2016.model.Reservation;
 
 public class ReservationFragment extends Fragment {
 
@@ -30,7 +34,7 @@ public class ReservationFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_reservation, container, false);
         ButterKnife.bind(this, rootView);
 
-        prepareList();
+        initList();
 
         android.widget.ExpandableListAdapter adapter = new ExpandableListAdapter(getContext(), days, hours);
         expandableList.setAdapter(adapter);
@@ -38,21 +42,12 @@ public class ReservationFragment extends Fragment {
         return rootView;
     }
 
-    private void prepareList() {
+    private void initList() {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        //Date date = dateFormat.parse();
+
         days = new ArrayList<>();
         hours = new HashMap<>();
-
-        days.add("Poniedzialek");
-        days.add("Wtorek");
-        days.add("Sroda");
-
-        List<String> day1 = new ArrayList<>();
-        day1.add("9:30");
-        day1.add("11:00");
-        day1.add("12:30");
-        day1.add("14:00");
-        hours.put(days.get(0), day1);
-        hours.put(days.get(1), day1);
-        hours.put(days.get(2), day1);
     }
 }
