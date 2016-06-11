@@ -2,6 +2,7 @@ package pl.edu.zut.mad.hackathon2016;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import pl.edu.zut.mad.hackathon2016.api.RequestListener;
 import pl.edu.zut.mad.hackathon2016.model.Entry;
+import pl.edu.zut.mad.hackathon2016.model.Orlik;
 import pl.edu.zut.mad.hackathon2016.model.Reservation;
 import retrofit.RetrofitError;
 
@@ -31,6 +33,8 @@ public class ReservationFragment extends Fragment
     private HashMap<String, List<Entry>> hours;
     private List<Reservation> reservations = Collections.emptyList();
     private android.widget.ExpandableListAdapter adapter;
+    private Orlik orlik;
+    private int type;
 
     @Bind(R.id.exp_list)
     ExpandableListView expandableList;
@@ -42,17 +46,17 @@ public class ReservationFragment extends Fragment
         View rootView = inflater.inflate(R.layout.fragment_reservation, container, false);
         ButterKnife.bind(this, rootView);
 
-        initList();
-
-        adapter = new ExpandableListAdapter(getContext(), days, hours);
-        expandableList.setAdapter(adapter);
+        Bundle args = getArguments();
+        if (args != null) {
+            orlik = (Orlik) args.getSerializable("orlik");
+            type = args.getInt("type");
+        }
+        DataProvider.getReservation(this);
 
         return rootView;
     }
 
     private void initList() {
-        DataProvider.getReservation(this);
-
         days = new ArrayList<>();
         hours = new HashMap<>();
         Calendar calendar = Calendar.getInstance();
@@ -70,6 +74,8 @@ public class ReservationFragment extends Fragment
                 e.printStackTrace();
             }
         }
+        adapter = new ExpandableListAdapter(getContext(), days, hours);
+        expandableList.setAdapter(adapter);
     }
 
     private String getDayOfWeek(int day) {
@@ -80,8 +86,7 @@ public class ReservationFragment extends Fragment
     @Override
     public void onSuccess(List<Reservation> response) {
         reservations = response;
-        adapter.notifyAll();
-
+        initList();
         for (Reservation reservation : response) {
             reservation.save();
         }

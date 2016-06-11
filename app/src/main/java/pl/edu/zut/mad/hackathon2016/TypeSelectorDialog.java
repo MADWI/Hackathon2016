@@ -3,6 +3,7 @@ package pl.edu.zut.mad.hackathon2016;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ public class TypeSelectorDialog extends DialogFragment {
         super.onCreate(savedInstanceState);
 
         orlik = (Orlik) getArguments().getSerializable("orlik");
+
     }
 
     @Nullable
@@ -38,7 +40,10 @@ public class TypeSelectorDialog extends DialogFragment {
         Bundle args = new Bundle();
         args.putSerializable("orlik", orlik);
         args.putInt("type", type.getId());
-
-
+        ReservationFragment reservationFragment = new ReservationFragment();
+        reservationFragment.setArguments(args);
+        ((FragmentActivity) getActivity()).getSupportFragmentManager().beginTransaction()
+                .add(R.id.main_activity_container, reservationFragment)
+                .commit();
     }
 }
