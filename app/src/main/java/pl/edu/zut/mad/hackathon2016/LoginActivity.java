@@ -14,7 +14,6 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
-import com.google.android.gms.common.api.ResultCallback;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -38,10 +37,10 @@ public class LoginActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
-        SetupSignIn();
+        setupSignIn();
     }
 
-    private void SetupSignIn() {
+    private void setupSignIn() {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -66,7 +65,7 @@ public class LoginActivity extends AppCompatActivity implements
     }
 
     @OnClick(R.id.sign_in_button)
-    public void OnSignInClick() {
+    public void onSignInClick() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
